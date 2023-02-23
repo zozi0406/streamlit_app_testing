@@ -37,7 +37,7 @@ fruityvice_response = requests.get("https://fruityvice.com/api/fruit/"+fruit_cho
 fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
 # write your own comment - what does this do?
 streamlit.dataframe(fruityvice_normalized)
-streamlit.text("The fruit load list contains:")
+streamlit.header("The fruit load list contains:")
 my_cur.execute("SELECT * FROM fruit_load_list")
-my_data_row = my_cur.fetchone()
-streamlit.text(my_data_row)
+my_data_rows = my_cur.fetchall()
+streamlit.dataframe(my_data_rows)
